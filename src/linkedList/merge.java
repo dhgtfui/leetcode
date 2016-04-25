@@ -20,11 +20,12 @@ public class merge {
 		//	System.out.print(current.val + " ");
 		//}
 		//System.out.println();
-		ListNode[] lists = {l1,l2,l3};
+		ListNode[] lists = {};
 		ListNode res=mergeKLists(lists);
-		for(ListNode current = res; current != null;current = current.next){
-			System.out.print(current.val + " ");
-		}
+		System.out.print(lists.length);
+		//for(ListNode current = res; current != null;current = current.next){
+			//System.out.print(current.val + " ");
+		//}
 	}
 	//148. Sort List
 	public static ListNode sortList(ListNode head) {
@@ -96,7 +97,6 @@ public class merge {
 		int k = lists.length;
         if(k == 0)
         	return null;
-        /**
         //divide and conquer
         int i = 2;
         while(i/2 < k){
@@ -108,11 +108,13 @@ public class merge {
         	i = i *2;
         }
         return lists[0];
-        */
+        
+        /** TLE
         ListNode p = lists[0];
-        for(int i = 1; i < k; i++){ 
-        	p = mergeTwoLists2(p, lists[i]);
+        for(int i = 1; i < n; i++){ 
+        	p = merge2Lists(p, lists[i]);
         }
         return p;
+         */
     }
 }

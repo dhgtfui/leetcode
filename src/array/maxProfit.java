@@ -12,7 +12,7 @@ package array;
 public class maxProfit {
 	public static void main(String[] args){
 		int[] price = {1,2,3,0,2};//2
-		System.out.println(maxProfit5(price));
+		System.out.println(maxProfit2(price));
 	}
 	//121. Best Time to Buy and Sell Stock
 	public static int maxProfit1(int[] prices) {
@@ -38,10 +38,12 @@ public class maxProfit {
 		if(prices.length < 1 || prices == null)
             return 0;
         int profit = 0;
-        for(int i = prices.length - 1; i >= 0; i--){
-        	if(prices[i - 1] > prices[i])
-        		continue;
-        	else
+        for(int i = prices.length - 1; i > 0; i--){
+        	//if(prices[i - 1] > prices[i])
+        		//continue;
+        	//else
+        		//profit += prices[i] - prices[i-1];
+        	if(prices[i - 1] <= prices[i])
         		profit += prices[i] - prices[i-1];
         }
         return profit;
@@ -64,7 +66,7 @@ public class maxProfit {
 			for(int i = 0; i < prices.length - 1; i++){
 				int diff = prices[i+1] - prices[i];
 				for(int j = k; j > 0; j--){
-					local[j] = Math.max(global[j-1] + diff > 0 ? diff : 0, local[j] + diff);
+					local[j] = Math.max(global[j-1] + Math.max(diff, 0), local[j] + diff);
 					global[j] = Math.max(local[j], global[j]);
 				}		
 			}
