@@ -28,6 +28,7 @@ public class merge {
 		//}
 	}
 	//148. Sort List
+	//Sort a linked list in O(nlogn) time using constant space complexity.
 	public static ListNode sortList(ListNode head) {
         if(head == null || head.next == null)
         	return head;

@@ -8,13 +8,13 @@ package linkedList;
 public class insertionSortList {
 	public static void main(String[] args){
 		ListNode test = new ListNode(10);
-		test.next = new ListNode (10);
-		//test.next.next = new ListNode (7);
+		test.next = new ListNode (1);
+		test.next.next = new ListNode (7);
 		//test.next.next.next = new ListNode(6);
 		//test.next.next.next.next = new ListNode(5);
 		//test.next.next.next.next.next = new ListNode(8);
 		//test.next.next.next.next.next.next = new ListNode(6);
-		test = insertionSortList(test);
+		test = insertionSortList2(test);
 		for(ListNode current = test; current != null;current = current.next){
 			System.out.print(current.val + " ");
 		}
@@ -44,6 +44,28 @@ public class insertionSortList {
                 else{
                 q.next = r.next;
                 r.next = q;}         
+            }
+        }
+        return dummy.next;
+    }
+	
+	public static ListNode insertionSortList2(ListNode head) {
+        ListNode dummy = new ListNode(Integer.MIN_VALUE);
+        dummy.next = head;
+        ListNode p = dummy;
+        while(p.next != null){
+            if(p.val <= p.next.val)
+                p = p.next;
+            else{
+                //inset p.next to sublist
+                ListNode r = dummy;
+                ListNode tmp = p.next;
+                while(r.next.val < tmp.val){
+                    r = r.next;
+                }
+                p.next = tmp.next;
+                tmp.next = r.next;
+                r.next = tmp;
             }
         }
         return dummy.next;

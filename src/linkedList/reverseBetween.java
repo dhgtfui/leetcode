@@ -15,9 +15,9 @@ public class reverseBetween {
 		ll.next.next.next = new ListNode(4);
 		ll.next.next.next.next = new ListNode(5);
 		//ListNode l2=removeNthFromEnd(ll,5);
-		for(ListNode current = l1; current != null;current = current.next){
-			System.out.print(current.val + " ");
-		}
+		//for(ListNode current = l1; current != null;current = current.next){
+			//System.out.print(current.val + " ");
+		//}
 	}
 	public static ListNode reverseBetween(ListNode head, int m, int n) {
         ListNode prehead = new ListNode(-1);

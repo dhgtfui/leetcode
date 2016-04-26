@@ -3,12 +3,12 @@ package linkedList;
 public class deleteDuplicates {
 	public static void main(String[] args){
 		ListNode test = new ListNode(1);
-		test.next = new ListNode(2);
-		test.next.next = new ListNode(4);
-		test.next.next.next = new ListNode(3);
+		test.next = new ListNode(3);
+		//test.next.next = new ListNode(3);
+		//test.next.next.next = new ListNode(4);
 		//test.next.next.next.next = new ListNode(5);
 		//test.next.next.next.next.next = new ListNode(2);
-		//reorderList(test);
+		deleteDuplicates2(test);
 		for(ListNode cur = test; cur != null; cur = cur.next){
 			System.out.print(cur.val + " ");
 		}
@@ -53,20 +53,43 @@ public class deleteDuplicates {
     }
 	//83. Remove Duplicates from Sorted List
 	public static ListNode deleteDuplicates(ListNode head) {
-        ListNode p = head;
-        while(p != null && p.next != null){
-        	ListNode tmp = p.next;
-        	
-        	while(p.val == tmp.val && tmp.next != null){
-        		tmp = tmp.next;
-        	}
-        	if(p.val == tmp.val && tmp.next == null){
-        		p.next = null;
-        		return head;
-        	}
-        	p.next = tmp;
-        	p = p.next;
-        }
-        return head;
+		if(head == null)
+	        return head;
+	    ListNode pre = head;
+	    ListNode cur = head.next;
+	    while(cur!=null)
+	    {
+	        if(cur.val == pre.val)
+	            pre.next = cur.next;
+	        else    
+	            pre = cur;
+	        cur = cur.next;
+	    }
+	    return head;
     }
+	
+	//82. Remove Duplicates from Sorted List II
+	//Description: Given a sorted linked list, delete all nodes that have duplicate numbers, 
+	//leaving only distinct numbers from the original list.
+	public static ListNode deleteDuplicates2(ListNode head){
+		 if(head == null)
+		        return head;
+		    ListNode dummy = new ListNode(-1);
+		    dummy.next = head;
+		    ListNode p = dummy;
+		    ListNode cur = head;
+		    while(cur!=null)
+		    {
+		        while(cur.next!=null && p.next.val==cur.next.val){
+		            cur = cur.next;
+		            }
+		        if(p.next==cur)
+		            p = p.next;
+		        else
+		            p.next = cur.next;
+		        cur = cur.next;
+		    }
+		    
+		    return dummy.next;
+	}
 }
